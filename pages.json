@@ -13,6 +13,12 @@
 				"navigationBarTitleText": "myapp",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "myapp"
+			}
 		}
     ],
 	"globalStyle": {
@@ -37,6 +43,12 @@
 				"iconPath": "static/uview/example/js.png",
 				"selectedIconPath": "static/uview/example/js_select.png",
 				"text": "通讯录"
+			},
+			{
+				"pagePath": "pages/search/search",
+				"iconPath": "static/uview/example/template.png",
+				"selectedIconPath": "static/uview/example/template_select.png",
+				"text": "我"
 			},
 			{
 				"pagePath": "pages/wxCenter/index",

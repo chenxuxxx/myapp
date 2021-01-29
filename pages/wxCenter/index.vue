@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar :is-back="false" title="　" :border-bottom="false">
-			<view class="u-flex u-row-right" style="width: 100%;">
+			<view class="u-flex u-row-right" style="width: 100%;" @click="photo">
 				<view class="camera u-flex u-row-center">
 					<u-icon name="camera-fill" color="#000000" size="48"></u-icon>
 				</view>
@@ -15,7 +15,7 @@
 				<view class="u-font-18 u-p-b-20">uView ui</view>
 				<view class="u-font-14 u-tips-color">微信号:helang_uView</view>
 			</view>
-			<view class="u-m-l-10 u-p-10">
+			<view class="u-m-l-10 u-p-10" @click="shaoMa">
 				<u-icon name="scan" color="#969799" size="28"></u-icon>
 			</view>
 			<view class="u-m-l-10 u-p-10">
@@ -58,7 +58,36 @@
 			
 		},
 		methods: {
-			
+			shaoMa() {
+				uni.scanCode({
+					success: function (res) {
+							console.log('条码类型：' + res.scanType);
+							console.log('条码内容：' + res.result);
+					}
+				});
+			},
+			photo() {
+				uni.chooseImage({
+				count: 6,
+				sizeType: ['original', 'compressed'],
+				// sourceType: ['album'],
+				success: function(res) {
+						// 预览图片
+						uni.previewImage({
+								urls: res.tempFilePaths,
+								longPressActions: {
+										itemList: ['发送给朋友', '保存图片', '收藏'],
+										success: function(data) {
+												console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+										},
+										fail: function(err) {
+												console.log(err.errMsg);
+										}
+								}
+						});
+				}
+				});
+			}
 		}
 	}
 </script>
